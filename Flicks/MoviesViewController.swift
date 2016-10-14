@@ -8,6 +8,7 @@
 
 import UIKit
 import AFNetworking
+import MBProgressHUD
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -21,7 +22,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        //tableView.rowHeight = 350.0
         
         callAPI()
         
@@ -39,7 +39,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             delegate:nil,
             delegateQueue:OperationQueue.main
         )
-        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         let task: URLSessionDataTask = session.dataTask(with: request as URLRequest,
                                                         completionHandler: { (dataOrNil, responseOrNil, errorOrNil) in
                                                             if errorOrNil != nil {
@@ -48,7 +48,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                                                                 if let data = dataOrNil {
                                                                     if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
                                                                                     NSLog("response: \(responseDictionary)")
-                                                                        
+                                                                                    MBProgressHUD.hide(for: self.view, animated: true)
                                                                                     if let movies_array = responseDictionary["results"] as? [Any]{
                                                                                         self.movies = movies_array
                                                                                         self.tableView.reloadData()

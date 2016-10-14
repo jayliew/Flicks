@@ -40,7 +40,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+- In the movie detail view, with a very large blob of text (more than space avail. on screen / view) for "overview", I couldn't figure out how to have the text truncate to ... *while* simultaneously not having movies with very sparse text for "overview" to center vertically (i.e. I still want the sparse text starting just below the "title")
 
 ## License
 
