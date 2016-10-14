@@ -32,14 +32,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SmR-fc-YA6"/>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Pursuit of Happyness" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n39-4I-BLP" userLabel="Title">
-                                                    <frame key="frameInset" minX="102" minY="8" width="265" height="24"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Pursuit of Happyness" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n39-4I-BLP" userLabel="Title">
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="A struggling salesman takes custody of his son as he's poised to begin a life-changing professional endeavor." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRq-O8-cye" userLabel="Description">
-                                                    <frame key="frameInset" minX="102" minY="66" width="265" height="110"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="A struggling salesman takes custody of his son as he's poised to begin a life-changing professional endeavor." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRq-O8-cye" userLabel="Overview">
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -54,13 +52,15 @@
                                                 <constraint firstItem="SmR-fc-YA6" firstAttribute="leading" secondItem="Ue3-jP-GyQ" secondAttribute="leading" id="S4L-Tn-up2"/>
                                                 <constraint firstItem="DRq-O8-cye" firstAttribute="trailing" secondItem="Ue3-jP-GyQ" secondAttribute="trailingMargin" id="Ujw-U4-UxO"/>
                                                 <constraint firstItem="DRq-O8-cye" firstAttribute="bottom" secondItem="Ue3-jP-GyQ" secondAttribute="bottomMargin" id="XoN-gA-hsq"/>
-                                                <constraint firstItem="SmR-fc-YA6" firstAttribute="width" secondItem="Ue3-jP-GyQ" secondAttribute="width" multiplier="0.25" id="oxP-8D-RKc"/>
+                                                <constraint firstItem="SmR-fc-YA6" firstAttribute="width" secondItem="Ue3-jP-GyQ" secondAttribute="width" multiplier="0.33" id="oxP-8D-RKc"/>
                                                 <constraint firstItem="DRq-O8-cye" firstAttribute="top" secondItem="n39-4I-BLP" secondAttribute="bottom" constant="8" id="tLV-13-dMG"/>
                                                 <constraint firstItem="n39-4I-BLP" firstAttribute="leading" secondItem="SmR-fc-YA6" secondAttribute="trailing" constant="8" id="uHR-ug-aWf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="overviewLabel" destination="DRq-O8-cye" id="yCw-4G-hre"/>
                                             <outlet property="posterView" destination="SmR-fc-YA6" id="DQt-Bo-GlO"/>
+                                            <outlet property="titleLabel" destination="n39-4I-BLP" id="YUk-hQ-KjU"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
