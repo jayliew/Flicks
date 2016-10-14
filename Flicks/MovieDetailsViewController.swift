@@ -22,8 +22,8 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        overviewLabel.sizeToFit()
-        titleLabel.sizeToFit()
+//        overviewLabel.sizeToFit()
+//        titleLabel.sizeToFit()
         
         if let poster = movie["poster_path"] as! String? {
             let poster_url = URL(string: "https://image.tmdb.org/t/p/w342" + poster)

@@ -99,13 +99,15 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IoG-Pq-XSM" userLabel="Poster"/>
                             <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcZ-Xo-wDK" userLabel="Details">
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="The Pursuit of Happyness" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjD-sm-GxZ" userLabel="Title">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="The Pursuit of Happyness" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjD-sm-GxZ" userLabel="Title">
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0U-gf-5ua" userLabel="Overview">
-                                        <string key="text">The Pursuit of Happyness is a 2006 American biographical drama film based on entrepreneur Chris Gardner's nearly one-year struggle being homeless. Directed by Gabriele Muccino, the film features Will Smith as Gardner, a homeless salesman. Smith's son Jaden Smith co-stars, making his film debut as Gardner's son, Christopher Jr.</string>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0U-gf-5ua" userLabel="Overview">
+                                        <frame key="frameInset" minX="8" minY="36" width="321" height="223"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        <string key="text">Life is a struggle for single father Chris Gardner (Will Smith). Evicted from their apartment, he and his young son (Jaden Christopher Syre Smith) find themselves alone with no place to go. Even though Chris eventually lands a job as an intern at a prestigious brokerage firm, the position pays no money. The pair must live in shelters and endure many hardships, but Chris refuses to give in to despair as he struggles to create a better life for himself and his son.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -113,13 +115,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottomMargin" secondItem="a0U-gf-5ua" secondAttribute="bottom" id="1cj-TU-5Ex"/>
-                                    <constraint firstItem="a0U-gf-5ua" firstAttribute="centerX" secondItem="fcZ-Xo-wDK" secondAttribute="centerX" id="4vb-O6-Mj0"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="a0U-gf-5ua" secondAttribute="trailing" id="C0a-3P-5v2"/>
-                                    <constraint firstItem="mjD-sm-GxZ" firstAttribute="leading" secondItem="fcZ-Xo-wDK" secondAttribute="leadingMargin" id="CnM-6W-3f0"/>
-                                    <constraint firstItem="a0U-gf-5ua" firstAttribute="leading" secondItem="fcZ-Xo-wDK" secondAttribute="leadingMargin" id="F4o-TL-ZWv"/>
-                                    <constraint firstItem="a0U-gf-5ua" firstAttribute="top" secondItem="mjD-sm-GxZ" secondAttribute="bottom" constant="8" id="PSB-1G-HKV"/>
-                                    <constraint firstItem="mjD-sm-GxZ" firstAttribute="top" secondItem="fcZ-Xo-wDK" secondAttribute="topMargin" id="Zwr-3x-xCu"/>
+                                    <constraint firstItem="a0U-gf-5ua" firstAttribute="top" secondItem="mjD-sm-GxZ" secondAttribute="bottom" id="C4g-q9-lVq"/>
+                                    <constraint firstItem="mjD-sm-GxZ" firstAttribute="leading" secondItem="fcZ-Xo-wDK" secondAttribute="leadingMargin" id="FXw-eN-Cc3"/>
+                                    <constraint firstItem="mjD-sm-GxZ" firstAttribute="top" secondItem="fcZ-Xo-wDK" secondAttribute="topMargin" id="Q4A-lY-0PB"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="mjD-sm-GxZ" secondAttribute="trailing" id="s0y-6K-pcj"/>
+                                    <constraint firstItem="a0U-gf-5ua" firstAttribute="trailing" secondItem="fcZ-Xo-wDK" secondAttribute="trailingMargin" id="xQa-pj-MKJ"/>
+                                    <constraint firstItem="a0U-gf-5ua" firstAttribute="leading" secondItem="fcZ-Xo-wDK" secondAttribute="leadingMargin" id="zUD-Pb-zWm"/>
                                 </constraints>
                             </view>
                         </subviews>
