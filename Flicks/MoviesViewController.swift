@@ -21,6 +21,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        //tableView.rowHeight = 350.0
         
         callAPI()
         
@@ -88,6 +89,15 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
 
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)
+        let movie = movies![(indexPath?.row)!] as! NSDictionary
+        
+        let detailsViewController = segue.destination as! MovieDetailsViewController
+        detailsViewController.movie = movie
+    }
     
     
 }
