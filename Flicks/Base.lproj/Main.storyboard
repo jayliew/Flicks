@@ -20,14 +20,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KHn-3b-aBd">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7eP-Lb-p9O">
+                                    <size key="itemSize" width="120" height="180"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionMovieCell" id="ZuV-0l-6Pz" customClass="CollectionMovieCell" customModule="Flicks" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="180"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="180"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="spP-yr-ZqO"/>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="spP-yr-ZqO" firstAttribute="top" secondItem="ZuV-0l-6Pz" secondAttribute="top" id="73o-tw-bBb"/>
+                                            <constraint firstItem="spP-yr-ZqO" firstAttribute="leading" secondItem="ZuV-0l-6Pz" secondAttribute="leading" id="9DG-eo-Kfe"/>
+                                            <constraint firstAttribute="trailing" secondItem="spP-yr-ZqO" secondAttribute="trailing" id="kyl-5W-nJC"/>
+                                            <constraint firstAttribute="bottom" secondItem="spP-yr-ZqO" secondAttribute="bottom" id="qLo-Bf-975"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="photoView" destination="spP-yr-ZqO" id="zPn-M2-d7g"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="192" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F2O-VI-tUb">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="192" id="lKt-Or-3We" customClass="MovieCell" customModule="Flicks" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="192"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="192"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lKt-Or-3We" id="Ue3-jP-GyQ">
-                                            <frame key="frameInset" width="375" height="191.5"/>
+                                            <frame key="frameInset" width="375" height="191"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SmR-fc-YA6"/>
@@ -89,17 +120,28 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="KHn-3b-aBd" secondAttribute="bottom" id="4v4-Gt-OeR"/>
                             <constraint firstAttribute="trailing" secondItem="F2O-VI-tUb" secondAttribute="trailing" id="7nC-2G-cH1"/>
+                            <constraint firstAttribute="trailing" secondItem="KHn-3b-aBd" secondAttribute="trailing" id="Kkg-qi-fqc"/>
+                            <constraint firstItem="y3c-jy-aDJ" firstAttribute="bottom" secondItem="F2O-VI-tUb" secondAttribute="top" id="LPe-Nf-CJG"/>
+                            <constraint firstItem="KHn-3b-aBd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="NZC-Y5-zvx"/>
                             <constraint firstItem="F2O-VI-tUb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ner-Pq-iJ4"/>
                             <constraint firstItem="cWO-Mn-oK2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Siz-Yt-YAQ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="F2O-VI-tUb" secondAttribute="bottom" id="Ttm-ns-NWM"/>
                             <constraint firstItem="cWO-Mn-oK2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="eYk-ct-ZjF"/>
                             <constraint firstAttribute="trailing" secondItem="cWO-Mn-oK2" secondAttribute="trailing" id="efI-WS-yzY"/>
                             <constraint firstItem="F2O-VI-tUb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="pzZ-bB-6Uz"/>
+                            <constraint firstItem="KHn-3b-aBd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tEe-OP-xkK"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="pzZ-bB-6Uz"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="FliXx0r" id="PCR-VR-8G8"/>
                     <connections>
+                        <outlet property="collectionView" destination="KHn-3b-aBd" id="6TU-NF-lox"/>
                         <outlet property="networkErrorView" destination="cWO-Mn-oK2" id="fgA-VP-Mfp"/>
                         <outlet property="tableView" destination="F2O-VI-tUb" id="5FX-pc-ex8"/>
                     </connections>

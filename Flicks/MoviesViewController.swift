@@ -10,11 +10,12 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     // MARK: Outlets
     @IBOutlet weak var networkErrorView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var movies: [Any]?
     var endpoint: String!
@@ -23,7 +24,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
         networkErrorView.isHidden = true
+        tableView.isHidden = true
+        collectionView.isHidden = false
         
         callAPI(endpoint: self.endpoint)
         
@@ -81,12 +87,37 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                                                                                     if let movies_array = responseDictionary["results"] as? [Any]{
                                                                                         self.movies = movies_array
                                                                                         self.tableView.reloadData()
+                                                                                        self.collectionView.reloadData()
                                                                                     }
                                                                                 }
                                                                 }
                                                             }
         });
         task.resume()
+    }
+    
+    
+    // MARK: UICollectionView Delegates
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // Set the number of items in your collection view.
+        if let allMovies = self.movies {
+            return allMovies.count
+        }else{
+            return 0
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionMovieCell", for: indexPath as IndexPath) as! CollectionMovieCell
+        
+        let movie = movies![indexPath.row] as! [String: Any]
+        
+        if let poster = movie["poster_path"] as! String? {
+            let poster_url = URL(string: "https://image.tmdb.org/t/p/w342" + poster)
+            cell.photoView.setImageWith(poster_url!)
+        }
+        return cell
     }
     
     // MARK: UITableView Delegates
