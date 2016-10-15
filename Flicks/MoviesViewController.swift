@@ -17,6 +17,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     var movies: [Any]?
+    var endpoint: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate = self
         networkErrorView.isHidden = true
         
-        callAPI()
+        callAPI(endpoint: self.endpoint)
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
@@ -50,13 +51,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func refreshControlAction(refreshControl: UIRefreshControl) {
         hideNetworkError()
-        callAPI()
+        callAPI(endpoint: self.endpoint)
         refreshControl.endRefreshing()
     }
 
-    func callAPI(){
+    func callAPI(endpoint: String){
         let api_key = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(api_key)")
+        let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(api_key)")
         let request = NSURLRequest(url: url! as URL)
         let session = URLSession(
             configuration: URLSessionConfiguration.default,
