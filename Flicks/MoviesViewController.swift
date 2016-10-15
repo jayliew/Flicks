@@ -120,6 +120,14 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    
     // MARK: UITableView Delegates
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -150,12 +158,21 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as! UITableViewCell
-        let indexPath = tableView.indexPath(for: cell)
-        let movie = movies![(indexPath?.row)!] as! NSDictionary
-        
-        let detailsViewController = segue.destination as! MovieDetailsViewController
-        detailsViewController.movie = movie
+        if(!tableView.isHidden){
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPath(for: cell)
+            let movie = movies![(indexPath?.row)!] as! NSDictionary
+            let detailsViewController = segue.destination as! MovieDetailsViewController
+            detailsViewController.movie = movie
+
+        }else{
+            let cell = sender as! CollectionMovieCell
+            let indexPath = collectionView.indexPath(for: cell)
+            let movie = movies![(indexPath?.row)!] as! NSDictionary
+            let detailsViewController = segue.destination as! MovieDetailsViewController
+            detailsViewController.movie = movie
+
+        }
     }
     
 }

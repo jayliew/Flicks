@@ -47,6 +47,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="photoView" destination="spP-yr-ZqO" id="zPn-M2-d7g"/>
+                                            <segue destination="U6E-yc-whJ" kind="show" id="7PF-iq-uU9"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -234,4 +235,7 @@
     <resources>
         <image name="error.png" width="64" height="64"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="b7c-Ve-jOU"/>
+    </inferredMetricsTieBreakers>
 </document>
