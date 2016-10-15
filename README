@@ -36,7 +36,7 @@ Here's a walkthrough of implemented user stories:
 
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+GIF created with [LiceCap](http://www.cockos.com/licecap/). README edited with [Atom](https://atom.io/). Podfile edited with [emacs](https://www.gnu.org/software/emacs/).
 
 ## Notes
 
@@ -44,7 +44,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright 2016 Jay S. Liew
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
