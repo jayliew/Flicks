@@ -13,7 +13,7 @@ import MBProgressHUD
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: Outlets
-    
+    @IBOutlet weak var networkErrorView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     var movies: [Any]?
@@ -22,12 +22,36 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        networkErrorView.isHidden = true
         
         callAPI()
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
+
         let contentWidth = tableView.bounds.width
         let contentHeight = tableView.bounds.height * 3
         tableView.contentSize = CGSize(width: contentWidth, height: contentHeight)
+    }
+
+    func hideNetworkError(){
+        UIView.animate(withDuration:0.4, animations: {
+            self.networkErrorView.alpha = 0
+        })
+    }
+
+    func showNetworkError(){
+        networkErrorView.isHidden = false
+        UIView.animate(withDuration:0.4, animations: {
+            self.networkErrorView.alpha = 1
+        })
+    }
+    
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+        hideNetworkError()
+        callAPI()
+        refreshControl.endRefreshing()
     }
 
     func callAPI(){
@@ -43,12 +67,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let task: URLSessionDataTask = session.dataTask(with: request as URLRequest,
                                                         completionHandler: { (dataOrNil, responseOrNil, errorOrNil) in
                                                             if errorOrNil != nil {
-                                                                            //errorCallback?(requestError)
+                                                                // Error handling
+                                                                MBProgressHUD.hide(for: self.view, animated: true)
+                                                                self.showNetworkError()
+
                                                             } else {
                                                                 if let data = dataOrNil {
                                                                     if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
-                                                                                    NSLog("response: \(responseDictionary)")
+                                                                                    // Success callback
                                                                                     MBProgressHUD.hide(for: self.view, animated: true)
+                                                                                    self.hideNetworkError()
                                                                                     if let movies_array = responseDictionary["results"] as? [Any]{
                                                                                         self.movies = movies_array
                                                                                         self.tableView.reloadData()
@@ -88,7 +116,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         return cell
     }
-
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! UITableViewCell
@@ -98,6 +125,5 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let detailsViewController = segue.destination as! MovieDetailsViewController
         detailsViewController.movie = movie
     }
-    
     
 }
