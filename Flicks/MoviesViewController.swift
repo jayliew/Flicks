@@ -224,7 +224,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         let movie = filteredData[indexPath.row] as! [String: Any]
         
-        cell.selectionStyle = UITableViewCellSelectionStyle.none // remove the default gray color from the selected rows
+        //cell.selectionStyle = UITableViewCellSelectionStyle. // remove the default gray color from the selected rows
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor(red:0.96, green:0.79, blue:0.78, alpha:1.0)
+        cell.selectedBackgroundView = backgroundView
+        
+        //F6CAC8
         
         cell.titleLabel.text = movie["title"] as? String
         cell.overviewLabel.text = movie["overview"] as? String
@@ -257,4 +263,5 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         }
 
     }
+    
 }
