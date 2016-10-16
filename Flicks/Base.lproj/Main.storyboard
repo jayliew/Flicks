@@ -59,7 +59,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="192"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lKt-Or-3We" id="Ue3-jP-GyQ">
-                                            <frame key="frameInset" width="375" height="191.5"/>
+                                            <frame key="frameInset" width="375" height="191"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SmR-fc-YA6"/>
@@ -118,21 +118,28 @@
                                     <constraint firstAttribute="bottomMargin" secondItem="UwD-7s-SIe" secondAttribute="bottom" id="lvX-Ay-gZc"/>
                                 </constraints>
                             </view>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="CQR-YO-aXs">
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="KHn-3b-aBd" secondAttribute="bottom" id="4v4-Gt-OeR"/>
                             <constraint firstAttribute="trailing" secondItem="F2O-VI-tUb" secondAttribute="trailing" id="7nC-2G-cH1"/>
+                            <constraint firstItem="CQR-YO-aXs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Jlm-4B-upw"/>
                             <constraint firstAttribute="trailing" secondItem="KHn-3b-aBd" secondAttribute="trailing" id="Kkg-qi-fqc"/>
-                            <constraint firstItem="y3c-jy-aDJ" firstAttribute="bottom" secondItem="F2O-VI-tUb" secondAttribute="top" id="LPe-Nf-CJG"/>
+                            <constraint firstItem="y3c-jy-aDJ" firstAttribute="bottom" secondItem="F2O-VI-tUb" secondAttribute="top" placeholder="YES" id="LPe-Nf-CJG"/>
                             <constraint firstItem="KHn-3b-aBd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="NZC-Y5-zvx"/>
                             <constraint firstItem="F2O-VI-tUb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ner-Pq-iJ4"/>
                             <constraint firstItem="cWO-Mn-oK2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Siz-Yt-YAQ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="F2O-VI-tUb" secondAttribute="bottom" id="Ttm-ns-NWM"/>
                             <constraint firstItem="cWO-Mn-oK2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="eYk-ct-ZjF"/>
                             <constraint firstAttribute="trailing" secondItem="cWO-Mn-oK2" secondAttribute="trailing" id="efI-WS-yzY"/>
+                            <constraint firstAttribute="trailing" secondItem="CQR-YO-aXs" secondAttribute="trailing" id="pfu-z3-eBQ"/>
                             <constraint firstItem="F2O-VI-tUb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="pzZ-bB-6Uz"/>
+                            <constraint firstItem="CQR-YO-aXs" firstAttribute="bottom" secondItem="F2O-VI-tUb" secondAttribute="top" id="rXA-dp-atN"/>
                             <constraint firstItem="KHn-3b-aBd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tEe-OP-xkK"/>
+                            <constraint firstItem="CQR-YO-aXs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="v9u-yp-JSw"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -152,6 +159,7 @@
                     <connections>
                         <outlet property="collectionView" destination="KHn-3b-aBd" id="6TU-NF-lox"/>
                         <outlet property="networkErrorView" destination="cWO-Mn-oK2" id="fgA-VP-Mfp"/>
+                        <outlet property="searchBar" destination="CQR-YO-aXs" id="Szw-FR-wr5"/>
                         <outlet property="tableView" destination="F2O-VI-tUb" id="5FX-pc-ex8"/>
                     </connections>
                 </viewController>

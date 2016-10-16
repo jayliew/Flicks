@@ -10,15 +10,17 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
 
     // MARK: Outlets
     @IBOutlet weak var networkErrorView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var movies: [Any]?
     var endpoint: String!
+    var filteredData: [Any]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
+        searchBar.delegate = self
         
         networkErrorView.isHidden = true
         tableView.isHidden = true
@@ -93,20 +96,25 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
                                                             } else {
                                                                 if let data = dataOrNil {
-                                                                    if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
-                                                                                    // Success callback
-                                                                                    MBProgressHUD.hide(for: self.view, animated: true)
-                                                                                    self.hideNetworkError()
-                                                                                    if let movies_array = responseDictionary["results"] as? [Any]{
-                                                                                        self.movies = movies_array
-                                                                                        self.tableView.reloadData()
-                                                                                        self.collectionView.reloadData()
-                                                                                    }
-                                                                                }
+                                                                    if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary { self.successCallback(responseDictionary: responseDictionary)}
                                                                 }
                                                             }
         });
         task.resume()
+    }
+    
+    func successCallback(responseDictionary: NSDictionary){
+        MBProgressHUD.hide(for: self.view, animated: true)
+        self.hideNetworkError()
+        
+        if let movies_array = responseDictionary["results"] as? [Any]{
+            self.movies = movies_array
+            self.filteredData = movies_array
+            
+            self.tableView.reloadData()
+            self.collectionView.reloadData()
+         
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,6 +129,28 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             tableView.isHidden = true
             collectionView.isHidden = false
         }
+    }
+    
+    // MARK: UISearchBar Delegates
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if(searchText.isEmpty){
+            self.filteredData = self.movies
+        }else{
+            if let movies = movies as? [[String: Any]]{
+                self.filteredData = []
+                for movie in movies{
+                    if let title = movie["title"] as? String{
+                        if(title.range(of: searchText, options: .caseInsensitive) != nil){
+                            self.filteredData.append(movie)
+                        }
+                    }
+                }
+                
+            }
+        }
+        tableView.reloadData()
+        collectionView.reloadData()
     }
     
     // MARK: UICollectionView Delegates
@@ -157,8 +187,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: UITableView Delegates
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let allMovies = self.movies {
-            return allMovies.count
+        if filteredData != nil{
+            return filteredData.count
         }else{
             return 0
         }
@@ -168,7 +198,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
-        let movie = movies![indexPath.row] as! [String: Any]
+        //let movie = movies![indexPath.row] as! [String: Any]
+        let movie = filteredData[indexPath.row] as! [String: Any]
         
         cell.titleLabel.text = movie["title"] as? String
         cell.overviewLabel.text = movie["overview"] as? String
