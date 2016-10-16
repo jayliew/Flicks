@@ -219,18 +219,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        
         let movie = filteredData[indexPath.row] as! [String: Any]
         
-        //cell.selectionStyle = UITableViewCellSelectionStyle. // remove the default gray color from the selected rows
-        
         let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor(red:0.96, green:0.79, blue:0.78, alpha:1.0)
+        backgroundView.backgroundColor = UIColor(red:0.96, green:0.79, blue:0.78, alpha:1.0) // 0xF6CAC8
         cell.selectedBackgroundView = backgroundView
-        
-        //F6CAC8
         
         cell.titleLabel.text = movie["title"] as? String
         cell.overviewLabel.text = movie["overview"] as? String
@@ -240,12 +234,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             let poster_url = URL(string: "https://image.tmdb.org/t/p/w342" + poster)
             cell.posterView.setImageWith(poster_url!)
         }
-        
         return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
         if (segue.identifier == "TableViewSegue"){
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPath(for: cell)
@@ -259,9 +251,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             let detailsViewController = segue.destination as! MovieDetailsViewController
             detailsViewController.movie = movie
         }else if(segue.identifier == "BarButtonSegue"){
-    
         }
-
     }
     
 }
