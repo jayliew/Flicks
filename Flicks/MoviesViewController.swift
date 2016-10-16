@@ -30,6 +30,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         collectionView.dataSource = self
         searchBar.delegate = self
         
+        self.automaticallyAdjustsScrollViewInsets = false // this was creating an unwanted inset in collection view
+        
         networkErrorView.isHidden = true
         tableView.isHidden = true
         collectionView.isHidden = true
@@ -66,6 +68,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
     func showNetworkError(){
         networkErrorView.isHidden = false
+        searchBar.isHidden = true
+        collectionView.isHidden = true
+        tableView.isHidden = true
+        
         UIView.animate(withDuration:0.4, animations: {
             self.networkErrorView.alpha = 1
         })
@@ -106,6 +112,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     func successCallback(responseDictionary: NSDictionary){
         MBProgressHUD.hide(for: self.view, animated: true)
         self.hideNetworkError()
+        searchBar.isHidden = false
         
         if let movies_array = responseDictionary["results"] as? [Any]{
             self.movies = movies_array
@@ -196,8 +203,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
-        //let movie = movies![indexPath.row] as! [String: Any]
         let movie = filteredData[indexPath.row] as! [String: Any]
+        
+        cell.selectionStyle = UITableViewCellSelectionStyle.none // remove the default gray color from the selected rows
         
         cell.titleLabel.text = movie["title"] as? String
         cell.overviewLabel.text = movie["overview"] as? String
