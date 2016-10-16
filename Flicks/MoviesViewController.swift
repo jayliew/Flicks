@@ -36,12 +36,19 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
+        collectionView.insertSubview(refreshControl, at: 0)
 
         let contentWidth = tableView.bounds.width
         let contentHeight = tableView.bounds.height * 3
         tableView.contentSize = CGSize(width: contentWidth, height: contentHeight)
     }
 
+    @IBAction func unwindToVC(segue: UIStoryboardSegue) {
+        
+        //self.performSegue(withIdentifier: "UnwindSegue", sender: self)
+        
+    }
+    
     func hideNetworkError(){
         UIView.animate(withDuration:0.4, animations: {
             self.networkErrorView.alpha = 0
@@ -113,7 +120,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         let movie = movies![indexPath.row] as! [String: Any]
         
-        if let poster = movie["poster_path"] as! String? {
+        if let poster = movie["poster_path"] as? String {
             let poster_url = URL(string: "https://image.tmdb.org/t/p/w342" + poster)
             cell.photoView.setImageWith(poster_url!)
         }
@@ -158,21 +165,23 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(!tableView.isHidden){
+
+        if (segue.identifier == "TableViewSegue"){
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPath(for: cell)
             let movie = movies![(indexPath?.row)!] as! NSDictionary
             let detailsViewController = segue.destination as! MovieDetailsViewController
             detailsViewController.movie = movie
-
-        }else{
+        }else if(segue.identifier == "CollectionViewSegue"){
             let cell = sender as! CollectionMovieCell
             let indexPath = collectionView.indexPath(for: cell)
             let movie = movies![(indexPath?.row)!] as! NSDictionary
             let detailsViewController = segue.destination as! MovieDetailsViewController
             detailsViewController.movie = movie
-
-        }
-    }
+        }else if(segue.identifier == "BarButtonSegue"){
     
+        }
+ 
+
+    }
 }

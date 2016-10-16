@@ -47,7 +47,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="photoView" destination="spP-yr-ZqO" id="zPn-M2-d7g"/>
-                                            <segue destination="U6E-yc-whJ" kind="show" id="7PF-iq-uU9"/>
+                                            <segue destination="U6E-yc-whJ" kind="show" identifier="CollectionViewSegue" id="7PF-iq-uU9"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -59,7 +59,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="192"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lKt-Or-3We" id="Ue3-jP-GyQ">
-                                            <frame key="frameInset" width="375" height="191"/>
+                                            <frame key="frameInset" width="375" height="191.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SmR-fc-YA6"/>
@@ -92,7 +92,7 @@
                                             <outlet property="overviewLabel" destination="DRq-O8-cye" id="yCw-4G-hre"/>
                                             <outlet property="posterView" destination="SmR-fc-YA6" id="DQt-Bo-GlO"/>
                                             <outlet property="titleLabel" destination="n39-4I-BLP" id="YUk-hQ-KjU"/>
-                                            <segue destination="U6E-yc-whJ" kind="show" id="b7c-Ve-jOU"/>
+                                            <segue destination="U6E-yc-whJ" kind="show" identifier="TableViewSegue" id="b7c-Ve-jOU"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -140,7 +140,15 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="FliXx0r" id="PCR-VR-8G8"/>
+                    <navigationItem key="navigationItem" title="FliXx0r" id="PCR-VR-8G8">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="Kt0-SM-dvc">
+                            <connections>
+                                <segue destination="tMU-Kn-4BO" kind="popoverPresentation" identifier="BarButtonSegue" popoverAnchorBarButtonItem="Kt0-SM-dvc" id="9KY-k0-YQM">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="KHn-3b-aBd" id="6TU-NF-lox"/>
                         <outlet property="networkErrorView" destination="cWO-Mn-oK2" id="fgA-VP-Mfp"/>
@@ -150,6 +158,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1024.8" y="115.59220389805098"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="6ul-dm-wD2">
+            <objects>
+                <viewController id="tMU-Kn-4BO" userLabel="Settings View Controller" customClass="SettingsViewController" customModule="Flicks" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zCL-xr-4u4"/>
+                        <viewControllerLayoutGuide type="bottom" id="z7s-qb-ASz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fDd-Mg-9Lv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hN1-Km-5DQ">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display options" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFe-Xy-BIT">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5rU-9f-OEg">
+                                        <segments>
+                                            <segment title="Table"/>
+                                            <segment title="Collection"/>
+                                        </segments>
+                                    </segmentedControl>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qDI-aE-qAO">
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="HB0-Jn-v09" kind="unwind" unwindAction="unwindToVCWithSegue:" id="NeR-gz-X34"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hN1-Km-5DQ" firstAttribute="centerX" secondItem="fDd-Mg-9Lv" secondAttribute="centerX" id="7Nt-bV-11L"/>
+                            <constraint firstItem="hN1-Km-5DQ" firstAttribute="centerY" secondItem="fDd-Mg-9Lv" secondAttribute="centerY" id="86y-pr-fyn"/>
+                            <constraint firstItem="qDI-aE-qAO" firstAttribute="centerX" secondItem="fDd-Mg-9Lv" secondAttribute="centerX" id="O4a-OT-ugx"/>
+                            <constraint firstItem="qDI-aE-qAO" firstAttribute="top" secondItem="hN1-Km-5DQ" secondAttribute="bottom" constant="100" id="cP6-y5-d4t"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="segmentedControl" destination="5rU-9f-OEg" id="tDH-Q0-V8M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UdE-zF-XXe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="HB0-Jn-v09" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1732" y="-530.28485757121439"/>
         </scene>
         <!--Movie Details View Controller-->
         <scene sceneID="DYD-iX-AQA">
@@ -236,6 +295,6 @@
         <image name="error.png" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="b7c-Ve-jOU"/>
+        <segue reference="7PF-iq-uU9"/>
     </inferredMetricsTieBreakers>
 </document>
