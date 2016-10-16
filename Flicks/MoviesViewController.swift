@@ -229,8 +229,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.titleLabel.text = movie["title"] as? String
         cell.overviewLabel.text = movie["overview"] as? String
         
-        if let poster = movie["poster_path"] as! String? {
-            // DEBUG: Potential nil here
+        if let poster = movie["poster_path"] as? String {
             let poster_url = URL(string: "https://image.tmdb.org/t/p/w342" + poster)
             cell.posterView.setImageWith(poster_url!)
         }
