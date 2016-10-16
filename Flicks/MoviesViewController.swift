@@ -146,7 +146,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                         }
                     }
                 }
-                
             }
         }
         tableView.reloadData()
@@ -156,9 +155,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: UICollectionView Delegates
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // Set the number of items in your collection view.
-        if let allMovies = self.movies {
-            return allMovies.count
+        if filteredData != nil{
+            return filteredData.count
         }else{
             return 0
         }
@@ -167,7 +165,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionMovieCell", for: indexPath as IndexPath) as! CollectionMovieCell
         
-        let movie = movies![indexPath.row] as! [String: Any]
+        let movie = filteredData![indexPath.row] as! [String: Any]
         
         if let poster = movie["poster_path"] as? String {
             let poster_url = URL(string: "https://image.tmdb.org/t/p/w342" + poster)
