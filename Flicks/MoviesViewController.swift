@@ -55,6 +55,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let contentWidth = tableView.bounds.width
         let contentHeight = tableView.bounds.height * 3
         tableView.contentSize = CGSize(width: contentWidth, height: contentHeight)
+        
+        networkErrorView.layer.cornerRadius = 3
+        networkErrorView.layer.shadowColor = UIColor.black.cgColor
+        networkErrorView.layer.shadowOffset = CGSize(width: 3, height: 3)
+        networkErrorView.layer.shadowOpacity = 0.3
+        networkErrorView.layer.shadowRadius = 3.0
     }
 
     @IBAction func unwindToVC(segue: UIStoryboardSegue) {
@@ -159,6 +165,19 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         collectionView.reloadData()
     }
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        filteredData = movies
+        tableView.reloadData()
+        collectionView.reloadData()
+        searchBar.resignFirstResponder()
+    }
+    
     // MARK: UICollectionView Delegates
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -211,6 +230,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.overviewLabel.text = movie["overview"] as? String
         
         if let poster = movie["poster_path"] as! String? {
+            // DEBUG: Potential nil here
             let poster_url = URL(string: "https://image.tmdb.org/t/p/w342" + poster)
             cell.posterView.setImageWith(poster_url!)
         }

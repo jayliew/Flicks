@@ -210,8 +210,8 @@
                         </subviews>
                         <color key="backgroundColor" red="0.5450980392" green="0.61176470589999998" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="hN1-Km-5DQ" firstAttribute="centerY" secondItem="fDd-Mg-9Lv" secondAttribute="centerY" multiplier="0.4" id="1pM-zx-TKn"/>
                             <constraint firstItem="hN1-Km-5DQ" firstAttribute="centerX" secondItem="fDd-Mg-9Lv" secondAttribute="centerX" id="7Nt-bV-11L"/>
-                            <constraint firstItem="hN1-Km-5DQ" firstAttribute="centerY" secondItem="fDd-Mg-9Lv" secondAttribute="centerY" id="86y-pr-fyn"/>
                             <constraint firstItem="qDI-aE-qAO" firstAttribute="centerX" secondItem="fDd-Mg-9Lv" secondAttribute="centerX" id="O4a-OT-ugx"/>
                             <constraint firstItem="qDI-aE-qAO" firstAttribute="width" secondItem="5rU-9f-OEg" secondAttribute="width" multiplier="0.75" id="OPH-QY-qF8"/>
                             <constraint firstItem="qDI-aE-qAO" firstAttribute="top" secondItem="hN1-Km-5DQ" secondAttribute="bottom" constant="100" id="cP6-y5-d4t"/>
