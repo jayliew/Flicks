@@ -183,6 +183,9 @@
                                             <segment title="Table"/>
                                             <segment title="Collection"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="onValueChanged:" destination="tMU-Kn-4BO" eventType="valueChanged" id="lkz-FK-38R"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                             </stackView>

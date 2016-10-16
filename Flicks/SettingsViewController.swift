@@ -17,6 +17,14 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let defaults = UserDefaults.standard
+        segmentedControl.selectedSegmentIndex = defaults.integer(forKey: "displayType")
+    }
+    
+    @IBAction func onValueChanged(_ sender: AnyObject) {
+        let defaults = UserDefaults.standard
+        defaults.set(segmentedControl.selectedSegmentIndex, forKey: "displayType")
+        defaults.synchronize()
     }
     
 }

@@ -29,7 +29,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         networkErrorView.isHidden = true
         tableView.isHidden = true
-        collectionView.isHidden = false
+        collectionView.isHidden = true
+        
+        let defaults = UserDefaults.standard
+        if (defaults.integer(forKey: "displayType") == 0) {
+            // Table View
+            tableView.isHidden = false
+        }else{
+            // CollectionView
+            collectionView.isHidden = false
+        }
         
         callAPI(endpoint: self.endpoint)
         
@@ -44,9 +53,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     @IBAction func unwindToVC(segue: UIStoryboardSegue) {
-        
-        //self.performSegue(withIdentifier: "UnwindSegue", sender: self)
-        
     }
     
     func hideNetworkError(){
@@ -103,6 +109,19 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         task.resume()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let defaults = UserDefaults.standard
+        if (defaults.integer(forKey: "displayType") == 0) {
+            // Table View
+            collectionView.isHidden = true
+            tableView.isHidden = false
+        }else{
+            // CollectionView
+            tableView.isHidden = true
+            collectionView.isHidden = false
+        }
+    }
     
     // MARK: UICollectionView Delegates
     
@@ -159,8 +178,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             cell.posterView.setImageWith(poster_url!)
         }
         
-        //cell.overviewLabel.sizeToFit()
-        
         return cell
     }
     
@@ -181,7 +198,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         }else if(segue.identifier == "BarButtonSegue"){
     
         }
- 
 
     }
 }
