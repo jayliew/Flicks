@@ -35,9 +35,11 @@ The following **additional** features are implemented:
 Here's a walkthrough of implemented user stories:
 
 Flicks
+
 ![Flicks](FlixX0r.gif)
 
 Network Request Error
+
 ![Network request error](network_error.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/). README edited with [Atom](https://atom.io/). Podfile edited with [emacs](https://www.gnu.org/software/emacs/).
