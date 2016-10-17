@@ -63,22 +63,14 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         networkErrorView.layer.shadowRadius = 3.0
         
         // Customizing the nav bar
-        
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        // Sets shadow (line below the bar) to a blank image
-        UINavigationBar.appearance().shadowImage = UIImage()
-        // Sets the translucent background color
-        UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
-        // Set translucent. (Default value is already true, so this can be removed if desired.)
-        UINavigationBar.appearance().isTranslucent = true
-        
+                
         if let navigationBar = navigationController?.navigationBar {
             //navigationBar.setBackgroundImage(UIImage(named: "clouds.png"), for: .default)
             //navigationBar.tintColor = UIColor(red: 1.0, green: 0.25, blue: 0.25, alpha: 0.8)
             
             navigationBar.isTranslucent = true
             self.navigationController!.view.backgroundColor = UIColor.clear
-            
+
             let shadow = NSShadow()
             shadow.shadowColor = UIColor.gray.withAlphaComponent(0.5)
             shadow.shadowOffset = CGSize(width: 2, height:2);
