@@ -34,11 +34,9 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-Flicks
-
 ![Flicks](FlixX0r.gif)
 
-Network Request Error
+Network Request Error:
 
 ![Network request error](network_error.gif)
 
