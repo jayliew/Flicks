@@ -63,7 +63,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         networkErrorView.layer.shadowRadius = 3.0
         
         // Customizing the nav bar
-                
+        
         if let navigationBar = navigationController?.navigationBar {
             //navigationBar.setBackgroundImage(UIImage(named: "clouds.png"), for: .default)
             //navigationBar.tintColor = UIColor(red: 1.0, green: 0.25, blue: 0.25, alpha: 0.8)
@@ -215,9 +215,79 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let movie = filteredData![indexPath.row] as! [String: Any]
         
         if let poster = movie["poster_path"] as? String {
-            let poster_url = URL(string: "https://image.tmdb.org/t/p/w342" + poster)
-            cell.photoView.setImageWith(poster_url!)
-        }
+            let imageUrl = URL(string: "https://image.tmdb.org/t/p/w92" + poster)!
+            let imageRequest = NSURLRequest(url: imageUrl)
+            
+            cell.photoView.setImageWith(
+                imageRequest as URLRequest,
+                placeholderImage: nil,
+                success: { (imageRequest, imageResponse, image) -> Void in
+                    
+                    // imageResponse will be nil if the image is cached
+                    if imageResponse != nil {
+                        //print("Image was NOT cached, fade in image")
+                        cell.photoView.alpha = 0.0
+                        cell.photoView.image = image
+                        
+                        UIView.animate(withDuration: 0.4,
+                                       animations: { () -> Void in cell.photoView.alpha = 1.0},
+                                       
+                                       completion: { (success) -> Void in
+                                        // The AFNetworking ImageView Category only allows one request to be sent at a time
+                                        // per ImageView. This code must be in the completion block.
+                                        let bigImageUrl = URL(string: "https://image.tmdb.org/t/p/w342" + poster)!
+                                        let bigImageRequest = NSURLRequest(url: bigImageUrl)
+                                        
+                                        cell.photoView.setImageWith(
+                                            bigImageRequest as URLRequest,
+                                            placeholderImage: image,
+                                            success: { (bigImageRequest, bigImageResponse, bigImage) -> Void in
+                                                cell.photoView.image = bigImage
+                                            }, // success hi res
+                                            failure: { (request, response, error) -> Void in }
+                                            
+                                        ) // setting hi res image
+                                        
+                            } // animate completion handler
+                        ) // animate
+                    } else {
+                        //print("Image was cached so just update the image")
+                        cell.photoView.image = image
+                    } // low res cache hit/miss
+                    
+                }, // low res success
+                failure: { (imageRequest, imageResponse, error) -> Void in // do something for the failure condition
+                }
+            ) // set low res image
+            
+        } // unwrap movie["poster_path"]
+
+        
+        /*
+        if let poster = movie["poster_path"] as? String {
+            let imageUrl = URL(string: "https://image.tmdb.org/t/p/w92" + poster)!
+            let imageRequest = NSURLRequest(url: imageUrl)
+            
+            cell.photoView.setImageWith(
+                imageRequest as URLRequest,
+                placeholderImage: nil,
+                success: { (imageRequest, imageResponse, image) -> Void in
+                    
+                    // imageResponse will be nil if the image is cached
+                    if imageResponse != nil {
+                        cell.photoView.alpha = 0.0
+                        cell.photoView.image = image
+                        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                            cell.photoView.alpha = 1.0
+                        })
+                    } else {
+                        cell.photoView.image = image
+                    }
+                },
+                failure: { (imageRequest, imageResponse, error) -> Void in
+                    // do something for the failure condition
+            })
+        } */
         return cell
     }
     
@@ -251,23 +321,67 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.overviewLabel.text = movie["overview"] as? String
         
         if let poster = movie["poster_path"] as? String {
-            let poster_url = URL(string: "https://image.tmdb.org/t/p/w342" + poster)
-            cell.posterView.setImageWith(poster_url!)
-        }
+            let imageUrl = URL(string: "https://image.tmdb.org/t/p/w92" + poster)!
+            let imageRequest = NSURLRequest(url: imageUrl)
+            
+            cell.posterView.setImageWith(
+                imageRequest as URLRequest,
+                placeholderImage: nil,
+                success: { (imageRequest, imageResponse, image) -> Void in
+                    
+                    // imageResponse will be nil if the image is cached
+                    if imageResponse != nil {
+                        //print("Image was NOT cached, fade in image")
+                        cell.posterView.alpha = 0.0
+                        cell.posterView.image = image
+                        
+                        UIView.animate(withDuration: 0.4,
+                                       animations: { () -> Void in cell.posterView.alpha = 1.0},
+                                       
+                                       completion: { (success) -> Void in
+                                        // The AFNetworking ImageView Category only allows one request to be sent at a time
+                                        // per ImageView. This code must be in the completion block.
+                                            let bigImageUrl = URL(string: "https://image.tmdb.org/t/p/w342" + poster)!
+                                            let bigImageRequest = NSURLRequest(url: bigImageUrl)
+                                        
+                                            cell.posterView.setImageWith(
+                                                bigImageRequest as URLRequest,
+                                                placeholderImage: image,
+                                                success: { (bigImageRequest, bigImageResponse, bigImage) -> Void in
+                                                    cell.posterView.image = bigImage
+                                                }, // success hi res
+                                                failure: { (request, response, error) -> Void in }
+                                            
+                                            ) // setting hi res image
+                                        
+                                        } // animate completion handler
+                                       ) // animate
+                    } else {
+                        //print("Image was cached so just update the image")
+                        cell.posterView.image = image
+                    } // low res cache hit/miss
+                    
+                }, // low res success
+                failure: { (imageRequest, imageResponse, error) -> Void in // do something for the failure condition 
+                }
+            ) // set low res image
+            
+        } // unwrap movie["poster_path"]
         return cell
-    }
+        
+    } // cellForRowAt
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "TableViewSegue"){
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPath(for: cell)
-            let movie = movies![(indexPath?.row)!] as! NSDictionary
+            let movie = filteredData![(indexPath?.row)!] as! NSDictionary
             let detailsViewController = segue.destination as! MovieDetailsViewController
             detailsViewController.movie = movie
         }else if(segue.identifier == "CollectionViewSegue"){
             let cell = sender as! CollectionMovieCell
             let indexPath = collectionView.indexPath(for: cell)
-            let movie = movies![(indexPath?.row)!] as! NSDictionary
+            let movie = filteredData![(indexPath?.row)!] as! NSDictionary
             let detailsViewController = segue.destination as! MovieDetailsViewController
             detailsViewController.movie = movie
         }else if(segue.identifier == "BarButtonSegue"){
