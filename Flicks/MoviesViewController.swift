@@ -10,6 +10,17 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
+extension UIColor {
+    // Extend UIColor to allow HTML-style hex values
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Bad red hex value: 0 - 255 only")
+        assert(green >= 0 && green <= 255, "Bad green hex value: 0 - 255 only")
+        assert(blue >= 0 && blue <= 255, "Bad blue hex value: 0 - 255 only")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+}
+
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
 
     // MARK: Outlets
