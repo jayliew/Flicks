@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		730153FDCFD233FE0E393B18 /* Pods_Flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C25797DF1995A32DDD030C69 /* Pods_Flicks.framework */; };
+		E11B9E5B1DB449950020787C /* murica.png in Resources */ = {isa = PBXBuildFile; fileRef = E11B9E5A1DB449950020787C /* murica.png */; };
+		E11B9E5D1DB44B4C0020787C /* acu.png in Resources */ = {isa = PBXBuildFile; fileRef = E11B9E5C1DB44B4C0020787C /* acu.png */; };
+		E11B9E5F1DB44F400020787C /* clouds.png in Resources */ = {isa = PBXBuildFile; fileRef = E11B9E5E1DB44F400020787C /* clouds.png */; };
 		E1A2A8911DB138850073DBF4 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A2A8901DB138850073DBF4 /* MovieDetailsViewController.swift */; };
 		E1A2A8931DB180290073DBF4 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A2A8921DB180290073DBF4 /* error.png */; };
 		E1A4CC241DB1E735003F04C1 /* nowplaying.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A4CC231DB1E735003F04C1 /* nowplaying.png */; };
@@ -26,6 +29,9 @@
 		2349F4B45A8546E188A3186A /* Pods-Flicks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicks.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flicks/Pods-Flicks.release.xcconfig"; sourceTree = "<group>"; };
 		29A71A1E1B1F4DD67704E7BA /* Pods-Flicks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flicks/Pods-Flicks.debug.xcconfig"; sourceTree = "<group>"; };
 		C25797DF1995A32DDD030C69 /* Pods_Flicks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flicks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E11B9E5A1DB449950020787C /* murica.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = murica.png; sourceTree = "<group>"; };
+		E11B9E5C1DB44B4C0020787C /* acu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = acu.png; sourceTree = "<group>"; };
+		E11B9E5E1DB44F400020787C /* clouds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clouds.png; sourceTree = "<group>"; };
 		E1A2A8901DB138850073DBF4 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		E1A2A8921DB180290073DBF4 /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
 		E1A4CC231DB1E735003F04C1 /* nowplaying.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nowplaying.png; sourceTree = "<group>"; };
@@ -108,6 +114,9 @@
 				E1BB14B61DAEFC0C0080DBD0 /* Main.storyboard */,
 				E1BB14B91DAEFC0C0080DBD0 /* Assets.xcassets */,
 				E1A4CC231DB1E735003F04C1 /* nowplaying.png */,
+				E11B9E5C1DB44B4C0020787C /* acu.png */,
+				E11B9E5E1DB44F400020787C /* clouds.png */,
+				E11B9E5A1DB449950020787C /* murica.png */,
 				E1A4CC251DB1E777003F04C1 /* toprated.png */,
 				E1A2A8921DB180290073DBF4 /* error.png */,
 				E1A2A88F1DB12AB00073DBF4 /* ViewControllers */,
@@ -191,8 +200,11 @@
 				E1BB14BD1DAEFC0C0080DBD0 /* LaunchScreen.storyboard in Resources */,
 				E1BB14BA1DAEFC0C0080DBD0 /* Assets.xcassets in Resources */,
 				E1A4CC261DB1E777003F04C1 /* toprated.png in Resources */,
+				E11B9E5D1DB44B4C0020787C /* acu.png in Resources */,
 				E1A4CC241DB1E735003F04C1 /* nowplaying.png in Resources */,
+				E11B9E5B1DB449950020787C /* murica.png in Resources */,
 				E1BB14B81DAEFC0C0080DBD0 /* Main.storyboard in Resources */,
+				E11B9E5F1DB44F400020787C /* clouds.png in Resources */,
 				E1A2A8931DB180290073DBF4 /* error.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -61,6 +61,35 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         networkErrorView.layer.shadowOffset = CGSize(width: 3, height: 3)
         networkErrorView.layer.shadowOpacity = 0.3
         networkErrorView.layer.shadowRadius = 3.0
+        
+        // Customizing the nav bar
+        
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        // Sets shadow (line below the bar) to a blank image
+        UINavigationBar.appearance().shadowImage = UIImage()
+        // Sets the translucent background color
+        UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        // Set translucent. (Default value is already true, so this can be removed if desired.)
+        UINavigationBar.appearance().isTranslucent = true
+        
+        if let navigationBar = navigationController?.navigationBar {
+            //navigationBar.setBackgroundImage(UIImage(named: "clouds.png"), for: .default)
+            //navigationBar.tintColor = UIColor(red: 1.0, green: 0.25, blue: 0.25, alpha: 0.8)
+            
+            navigationBar.isTranslucent = true
+            self.navigationController!.view.backgroundColor = UIColor.clear
+            
+            let shadow = NSShadow()
+            shadow.shadowColor = UIColor.gray.withAlphaComponent(0.5)
+            shadow.shadowOffset = CGSize(width: 2, height:2);
+            shadow.shadowBlurRadius = 4;
+            navigationBar.titleTextAttributes = [
+                //NSFontAttributeName : UIFont.boldSystemFont(ofSize: 22),
+                //NSForegroundColorAttributeName : UIColor(red: 0.5, green: 0.15, blue: 0.15, alpha: 0.8),
+                NSShadowAttributeName : shadow
+            ]
+        }
+
     }
 
     @IBAction func unwindToVC(segue: UIStoryboardSegue) {
@@ -172,7 +201,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         searchBar.text = ""
-        filteredData = movies
+        self.filteredData = self.movies
         tableView.reloadData()
         collectionView.reloadData()
         searchBar.resignFirstResponder()

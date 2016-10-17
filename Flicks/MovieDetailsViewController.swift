@@ -29,6 +29,7 @@ class MovieDetailsViewController: UIViewController {
 
         if let title = movie["title"] as! String? {
             titleLabel.text = title
+            self.navigationItem.title = title
         }
         
         if let overview = movie["overview"] as! String? {
