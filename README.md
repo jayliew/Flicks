@@ -2,7 +2,7 @@
 
 Flicks is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: 10 hours spent in total
+Time spent: 14 hours spent in total
 
 ## User Stories
 
@@ -16,8 +16,6 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-- [x] AutoLayout
-- [x] Stack View
 - [x] Add a tab bar for **Now Playing** and **Top Rated** movies.
 - [x] Implement segmented control to switch between list view and grid view.
 - [x] Add a search bar.
@@ -28,7 +26,8 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [x] AutoLayout
+- [x] Stack View
 
 ## Video Walkthrough
 
