@@ -47,6 +47,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/). README edited with [
 
 ## License
 
+[www.jayliew.com](http://www.jayliew.com)
+
     Copyright 2016 Jay S. Liew
 
     Licensed under the Apache License, Version 2.0 (the "License");
