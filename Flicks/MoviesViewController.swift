@@ -59,7 +59,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         callAPI(endpoint: self.endpoint)
         
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
         collectionView.insertSubview(refreshControl, at: 0)
 
